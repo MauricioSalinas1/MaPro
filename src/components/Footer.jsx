@@ -1,11 +1,9 @@
-const Footer = () => {
+function Footer() {
 
     return (
-        <>
-            <footer>
-                <p>Todos los derechos reservados - Mauricio Emiliano Salinas</p>
-            </footer>
-        </>
+        <footer className="footer">
+            <p>Todos los derechos reservados - Mauricio Emiliano Salinas</p>
+        </footer >
     )
 }
 
