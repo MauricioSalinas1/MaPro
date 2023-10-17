@@ -5,11 +5,21 @@ function ItemListContainer() {
     const { category } = useParams();
     const [products, setProducts] = useState([]);
 
-
     useEffect(() => {
-        fetch(`https://fakestoreapi.com/products${category ? `?category=${category}` : ''}`)
+        fetch('https://fakestoreapi.com/products')
             .then((response) => response.json())
-            .then((data) => setProducts(data))
+            .then((data) => {
+                if (category) {
+                    // Filtrar productos por categoría si se proporciona una categoría en la URL
+                    const filteredProducts = data.filter((product) => {
+                        // Comprobar si la categoría en la API coincide con la categoría en la URL
+                        return product.category === (category === 'clothing' ? "women's clothing" : category);
+                    });
+                    setProducts(filteredProducts);
+                } else {
+                    setProducts(data);
+                }
+            })
             .catch((error) => console.error('Error:', error));
     }, [category]);
 

@@ -3,13 +3,13 @@ import { useParams } from 'react-router-dom';
 
 function ItemDetailContainer() {
     const { id } = useParams();
-
     const [product, setProduct] = useState({});
 
     useEffect(() => {
         fetch(`https://fakestoreapi.com/products/${id}`)
             .then((response) => response.json())
-            .then((data) => setProduct(data));
+            .then((data) => setProduct(data))
+            .catch((error) => console.error('Error:', error));
     }, [id]);
 
     return (
